@@ -19,6 +19,7 @@ defmodule Drivex.Accounts.Credential do
     credential
     |> cast(attrs, [:email, :password])
     |> validate_required([:email, :password])
+    |> validate_format(:email, ~r/@/)
     |> unique_constraint(:email)
   end
 end

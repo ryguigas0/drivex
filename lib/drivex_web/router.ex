@@ -11,6 +11,11 @@ defmodule DrivexWeb.Router do
     get("/health", HealthController, :index)
 
     resources "/user", UserController
+    post "/token", TokenController, :create
+
+    # scope "/protected", DrivexWeb do
+    #   get "/", DriveController, :index
+    # end
   end
 
   # Enables LiveDashboard only for development

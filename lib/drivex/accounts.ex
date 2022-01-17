@@ -104,8 +104,6 @@ defmodule Drivex.Accounts do
     User.changeset(user, attrs)
   end
 
-  alias Drivex.Accounts.Credential
-
   @doc """
   Returns the list of credentials.
 
@@ -198,5 +196,20 @@ defmodule Drivex.Accounts do
   """
   def change_credential(%Credential{} = credential, attrs \\ %{}) do
     Credential.changeset(credential, attrs)
+  end
+
+  def validate_email_password(email, password) do
+    query =
+      from u in User,
+        inner_join: c in Credential,
+        where: c.email == ^email and c.password == ^password
+
+    case Repo.one(query) do
+      nil ->
+        {:error, :no_match}
+
+      user ->
+        {:ok, user}
+    end
   end
 end
