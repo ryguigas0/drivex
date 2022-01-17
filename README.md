@@ -2,11 +2,17 @@
 Elixir powered cloud drive
 
 ## TODO
-- Account login (phoenix tokens)
-    - Account context
-        - User (name, profile pic)
-        - Credentials (password, email)
+- Account login (phoenix tokens) -> OK
 - File upload / download / deleting
+    - Upload schema
+        - name
+        - extension
+        - path
+    - Upload flow
+        - Upload is sent
+        - Random gen for saving in assets the temp upload
+        - Save the temporary upload
+        - Associate the file to the user via token
 - Add folders: organizing files
 - File searching: easier file finding
 - File sharing: public or certain users

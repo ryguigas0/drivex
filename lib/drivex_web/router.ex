@@ -22,6 +22,7 @@ defmodule DrivexWeb.Router do
     scope "/protected" do
       pipe_through([:auth])
       get "/", DriveController, :index
+      post "/upload", DriveController, :upload_file
     end
   end
 

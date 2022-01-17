@@ -2,7 +2,7 @@ defmodule Drivex.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Drivex.Accounts.Credential
+  alias Drivex.{Accounts.Credential, Drive.Upload}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -12,6 +12,7 @@ defmodule Drivex.Accounts.User do
     field :profile_pic, :string
 
     has_one :credential, Credential
+    has_many :upload, Upload
 
     timestamps()
   end

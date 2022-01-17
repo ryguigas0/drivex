@@ -5,4 +5,7 @@ defmodule DrivexWeb.DriveView do
     do: %{
       msg: "THIS IS PROTECTED USER #{user_id}"
     }
+
+  def render("upload.json", %{upload: upload}),
+    do: upload
 end
