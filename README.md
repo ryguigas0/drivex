@@ -1,19 +1,11 @@
 # Drivex
+Elixir powered cloud drive
 
-To start your Phoenix server:
-
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
-
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
-
-## Learn more
-
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+## Recomended tools
+- Elixir 1.13.0
+- Phoenix 1.6.2
+## Dev environment setup
+1. `git clone` this project
+2. `mix setup`
+3. `mix phx.server`
+4. GET request [`localhost:4000/api/health`](http://localhost:4000/api/health)
