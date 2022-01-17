@@ -21,7 +21,7 @@ defmodule DrivexWeb.Token do
 
   def verify_token(token) do
     case Token.verify(DrivexWeb.Endpoint, @salt, token) do
-      {:ok, %{user_id: user_id}} -> {:ok, user_id}
+      {:ok, %{user_id: _user_id}} = resp -> resp
       {:error, _} -> {:error, :unauthorized}
     end
   end

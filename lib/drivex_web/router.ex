@@ -1,8 +1,14 @@
 defmodule DrivexWeb.Router do
   use DrivexWeb, :router
 
+  alias DrivexWeb.Plugs.VerifyToken
+
   pipeline :api do
     plug(:accepts, ["json"])
+  end
+
+  pipeline :auth do
+    plug(VerifyToken)
   end
 
   scope "/api", DrivexWeb do
@@ -13,9 +19,10 @@ defmodule DrivexWeb.Router do
     resources "/user", UserController
     post "/token", TokenController, :create
 
-    # scope "/protected", DrivexWeb do
-    #   get "/", DriveController, :index
-    # end
+    scope "/protected" do
+      pipe_through([:auth])
+      get "/", DriveController, :index
+    end
   end
 
   # Enables LiveDashboard only for development
