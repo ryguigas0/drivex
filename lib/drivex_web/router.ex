@@ -9,6 +9,8 @@ defmodule DrivexWeb.Router do
     pipe_through(:api)
 
     get("/health", HealthController, :index)
+
+    resources "/user", UserController
   end
 
   # Enables LiveDashboard only for development
