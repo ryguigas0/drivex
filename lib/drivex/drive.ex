@@ -39,6 +39,19 @@ defmodule Drivex.Drive do
   """
   def get_upload!(id), do: Repo.get!(Upload, id)
 
+  def get_upload_path(id) do
+    path = get_upload!(id) |> Map.get(:path, nil)
+
+    case path do
+      nil ->
+        {:error, :not_found}
+
+      path ->
+        download_path = UploadHandler.get_upload_store() <> path
+        {:ok, download_path}
+    end
+  end
+
   @doc """
   Creates a upload.
 
@@ -56,13 +69,12 @@ defmodule Drivex.Drive do
     rand_name = gen_rand_name(name)
 
     with :ok <- UploadHandler.save(upload.path, rand_name) do
-      attrs =
-        %{
-          name: name,
-          extension: name |> String.split(".", trim: true) |> List.last(),
-          path: rand_name,
-          user_id: user_id
-        }
+      attrs = %{
+        name: name,
+        extension: name |> String.split(".", trim: true) |> List.last(),
+        path: rand_name,
+        user_id: user_id
+      }
 
       %Upload{}
       |> Upload.changeset(attrs)

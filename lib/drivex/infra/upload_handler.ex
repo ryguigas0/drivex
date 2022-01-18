@@ -16,4 +16,6 @@ defmodule Drivex.Infra.UploadHandler do
       {:error, _} -> :error
     end
   end
+
+  def get_upload_store, do: @upload_store
 end

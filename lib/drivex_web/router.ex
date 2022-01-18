@@ -22,6 +22,7 @@ defmodule DrivexWeb.Router do
     scope "/protected" do
       pipe_through([:auth])
       resources "/upload", UploadController, only: [:create, :delete, :index, :show]
+      get "/upload/download/:id", UploadController, :download
     end
   end
 

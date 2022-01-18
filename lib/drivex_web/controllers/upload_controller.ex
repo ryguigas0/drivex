@@ -30,4 +30,12 @@ defmodule DrivexWeb.UploadController do
       |> render("delete.json", %{upload: upload})
     end
   end
+
+  def download(conn, %{"id" => id}) do
+    with {:ok, download_path} <- Drive.get_upload_path(id) do
+      conn
+      |> send_download({:file, download_path}, disposition: :attachment)
+      |> put_status(:ok)
+    end
+  end
 end
