@@ -15,7 +15,7 @@ defmodule DrivexWeb.Token do
         max_age: @age
       )
     else
-      err -> err |> IO.inspect(label: "TOKEN ERROR")
+      err -> err
     end
   end
 

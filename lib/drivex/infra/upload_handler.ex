@@ -9,11 +9,11 @@ defmodule Drivex.Infra.UploadHandler do
     end
   end
 
-  # def remove(name) do
-  #   File.rm(@upload_store <> name)
-  #   |> case do
-  #     :ok -> :ok
-  #     {:error, _} -> :error
-  #   end
-  # end
+  def remove(name) do
+    File.rm(@upload_store <> name)
+    |> case do
+      :ok -> :ok
+      {:error, _} -> :error
+    end
+  end
 end

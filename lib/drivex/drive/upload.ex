@@ -6,7 +6,7 @@ defmodule Drivex.Drive.Upload do
 
   @fields [:name, :extension, :path, :user_id]
 
-  @derive {Jason.Encoder, only: [:id] ++ @fields}
+  @derive {Jason.Encoder, only: [:id] ++ (@fields -- [:user_id])}
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
 

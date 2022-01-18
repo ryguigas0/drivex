@@ -16,13 +16,12 @@ defmodule DrivexWeb.Router do
 
     get("/health", HealthController, :index)
 
-    resources "/user", UserController
+    resources "/user", UserController, only: [:create, :show]
     post "/token", TokenController, :create
 
     scope "/protected" do
       pipe_through([:auth])
-      get "/", DriveController, :index
-      post "/upload", DriveController, :upload_file
+      resources "/upload", UploadController, only: [:create, :delete, :index, :show]
     end
   end
 

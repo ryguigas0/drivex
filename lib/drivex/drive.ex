@@ -17,8 +17,10 @@ defmodule Drivex.Drive do
       [%Upload{}, ...]
 
   """
-  def list_uploads do
-    Repo.all(Upload)
+  def list_uploads(user_id) do
+    query = from u in Upload, where: u.user_id == ^user_id
+
+    Repo.all(query)
   end
 
   @doc """
@@ -61,7 +63,6 @@ defmodule Drivex.Drive do
           path: rand_name,
           user_id: user_id
         }
-        |> IO.inspect(label: "upload")
 
       %Upload{}
       |> Upload.changeset(attrs)
@@ -101,7 +102,9 @@ defmodule Drivex.Drive do
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_upload(%Upload{} = upload) do
+  def delete_upload(upload_id) do
+    upload = get_upload!(upload_id)
+    :ok = UploadHandler.remove(upload.path)
     Repo.delete(upload)
   end
 
